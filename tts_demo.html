@@ -31,153 +31,49 @@
 
   </div>
 
-  <!-- <ul>
-    <li>
-      <p class="lead">
-        This is a demo page of the paper
-        <strong>“Cross-utterance Conditioned VAE for Non-autoregressive TTS”</strong>
-      </p>
-    </li>
-    <li>
-      <p class="lead">
-        Paper available at
-        <a href="https://www.overleaf.com/project/60a515dea4aa985e42cb810e">overleaf link</a>
-      </p>
-    </li>
-  </ul> -->
-
-
-  <!-- <div class="alert alert-success" role="alert">
-    <strong><p>but i perceive your thoughts; you do not credit my narrative and do not intend to pursue my enemy with the punishment which is his desert." as i spoke, rage sparkled in my eyes; the magistrate was intimidated.
-    </p ></strong>
-  </div> -->
-
-  
-<!--   <table border="1" id="test" align="center" width = "700">
-    <tbody>
-      <tr>
-        <td>ground_truth</td>
-        <td><audio controls>
-            <source src="{{ url_for('static',filename='LibriTTS/groudtruth/78_368_000018_000001.wav') }}"
-             type="audio/wav">
-            您的浏览器不支持 audio 元素。
-          </audio></td>
-      </tr>
-      <tr>
-        <td>baseline</td>
-        <td><audio controls>
-            <source src="{{ url_for('static',filename='LibriTTS/baseline/78_368_000018_000001.wav') }}"
-             type="audio/wav">
-            您的浏览器不支持 audio 元素。
-          </audio></td>
-      </tr>
-      <tr>
-        <td>baseline+Global VAE</td>
-        <td><audio controls>
-            <source src="{{ url_for('static',filename='LibriTTS/baseline+Global_VAE/78_368_000018_000001.wav') }}"
-             type="audio/wav">
-            您的浏览器不支持 audio 元素。
-          </audio></td>
-      </tr>
-      <tr>
-        <td>baseline+Fine-grained VAE</td>
-        <td><audio controls>
-            <source src="{{ url_for('static',filename='LibriTTS/baseline+Fine_grained_VAE/78_368_000018_000001.wav') }}"
-             type="audio/wav">
-            您的浏览器不支持 audio 元素。
-          </audio></td>
-      </tr>
-      <tr>
-        <td>PriorSpeech</td>
-        <td><audio controls>
-            <source src="LibriTTS/PriorSpeech/78_368_000018_000001.wav" type="audio/wav">
-            您的浏览器不支持 audio 元素。
-          </audio></td>
-      </tr>
-    </tbody>
-  </table> -->
-
-<!-- <h2><p>Dataset</p ></h2>
-<font size = "4">
-<ul>
-  <li>
-    Single speaker setting -- <a href="https://keithito.com/LJ-Speech-Dataset/">LJ-Speech</a>:
-      consists of 13,100 audio clips with a total duration of approximately 24 hours.
-      All the audio clips are read by a female native English speaker, and the scripts are selected from 7 non-fiction books.
-  </li>
-  <li>
-    Multi-speaker setting -- <a href = "https://research.google/tools/datasets/libri-tts/">LibriTTS</a>:
-      Subsets train-clean-100 and train-clean-360 are used,
-      totally consist of 1151 speakers (553 females speakers and 598 male speakers) and about 245 hours audios.
-  </li>
-  <li>
-    All audio clips are re-sampled at 22.05 kHz in our experiments.
-  </li>
-</ul>
-</font> -->
-
 <h2><p>Result</p ></h2>
-<h3><p>LibriSpeech</p ></h3>
-  <!-- class="text-center" -->
-<p id="Libri"></p>
 
-<script type=text/javascript>
-  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
-  arr2 = ["78_368_000018_000001", "114_129324_000014_000001", "175_123036_000021_000002",
-"303_123507_000010_000001","1603_139324_000012_000009","1874_165701_000017_000000",
-"2570_157243_000126_000001","3112_9554_000010_000005","4138_11079_000008_000003",
-"4257_6397_000028_000003"]
-  text = ['but i perceive your thoughts; you do not credit my narrative and do not intend to pursue my enemy with the punishment which is his desert." as i spoke, rage sparkled in my eyes; the magistrate was intimidated',
-  "i didn't speak to him-i couldn't speak to him, for he didn't see me, and i trembled so, that i was not able to go up to him.",
-  'he very seldom used the whip; i knew by his voice, and his click, click, when he wanted to get on fast, and by the rein where i was to go; so there was no need for whipping; but i must go back to my story.',
-  'after they had retired for the night it was customary for the adults to carry on a desultory conversation for a short time before lapsing into sleep, and now that i could understand their language i was always a keen listener, although i never proffered any remarks myself.',
-  '"wait," cried someone, and a door opened.',
-  "repulsed at the polls, he turned to the law as another channel, supplementing forensic failings by his artful story telling.",
-  "or at least i thought so then.",
-  "he was much interested in, and was very much distressed by, the unhappy condition of the country.",
-  '"and they call this travelling for pleasure!" thought poor katy.',
-  "marta, in a soft and implacable voice, and with such malicious glances that mr gould's best friends advised him earnestly to attempt no bribery to get the matter dropped."
+<h3><p>LJSpeech (Ablation Study)</p ></h3>
+<p id="LJSAbla"></p>
+
+<script>
+  arr1 = ["groudtruth","baseline","baseline+Fine_grained_VAE",
+  "PriorSpeech-C","PriorSpeech(C1)","PriorSpeech(C3)","PriorSpeech(C5)"]
+  model = ["groudtruth","baseline","baseline+Fine-grained VAE",
+  "CUC-VAE(-C)","CUC-VAE(C1)","CUC-VAE(C3)","CUC-VAE(C5)"]
+  arr2 = ["LJ003-0044","LJ006-0168"]
+  text = ['the reforms which were to be attempted in that prison',
+  'to taking the descriptions of newly-arrived prisoners.'
 ]
   var str = '';
   for (y in arr2)
   {
     str += '<blockquote>' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
-    // str += '<tr><td colspan="2"><b>' + text[y] + '</b></td></tr>'
     for (x in arr1)
     {
       str += '';
       str += '<tr>'
-      str += "<td>" + arr1[x] + "</td>";
-      str += '<td><audio controls><source src="LibriTTS/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LJSpeech/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
       str += '</tr>'
     }
     str += "</tbody> </table>";
     str += '<h1> </h1>';
   }
-  document.getElementById("Libri").innerHTML=str;
+  document.getElementById("LJSAbla").innerHTML=str;
 </script>
 
 <h3><p>LJSpeech</p ></h3>
-  <!-- class="text-center" -->
 <p id="LJS"></p>
 
 <script>
   arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech-C-D",
   ,"PriorSpeech-C","PriorSpeech(C1)","PriorSpeech(C3)","PriorSpeech(C5)"]
-  arr2 = ["LJ003-0044", "LJ003-0103", "LJ005-0213",
-"LJ006-0168","LJ008-0061","LJ011-0076",
-"LJ013-0256","LJ017-0271","LJ025-0004",
-"LJ049-0225"]
-  text = ['the reforms which were to be attempted in that prison',
-  'it was that of a person, quote, who practiced in the law, and who was connected by marriage with some very respectable families.',
-  'newgate through all these years continued a bye-word with the society.',
-  'to taking the descriptions of newly-arrived prisoners.',
-  'the entrance upon this floor or leaf is from the middle window over the gate of the prison;',
-  'his offense was uttering forged notes, and there was strong suspicion that he had long subsisted entirely by this fraud.',
-  'good had told her, much to her perturbation, that she was to move from south street to roehampton, and one day he fetched her.',
-  'lyons asked the time, and was told it was only five.',
-  'are often designated organic functions.',
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE-C-D",
+  ,"CUC-VAE(-C)","CUC-VAE(C1)","CUC-VAE(C3)","CUC-VAE(C5)"]
+  arr2 = ["LJ017-0271","LJ049-0225"]
+  text = ['lyons asked the time, and was told it was only five.',
   'the commission feels the secret service and the fbi, as well as the state department and the cia when the president travels abroad,'
 ]
   var str = '';
@@ -185,7 +81,6 @@
   {
     str += '<blockquote>' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
-    // str += '<tr><td colspan="2"><b>' + text[y] + '</b></td></tr>'
     for (x in arr1)
     {
       str += '';
@@ -200,53 +95,37 @@
   document.getElementById("LJS").innerHTML=str;
 </script>
 
-<!-- <h4><p class="text-center">第二列 - 分为四个盒子</p ></h4>
-<h4>第二列 - 分为四个盒子</h4>
-	<div class="row">
-		<div class="col-md-9 col-md-offset-1" style="background-color: #dedef8;
-               box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-               <p>but i perceive your thoughts; you do not credit my narrative and do not intend to pursue my enemy with the punishment which is his desert." as i spoke, rage sparkled in my eyes; the magistrate was intimidated.
-               </p >
-            </div>
-	</div>
-         <div class="row">
-            <div class="col-md-3 col-md-offset-1" style="background-color: #dedef8;
-               box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-               <p>ground_truth
-               </p >
-            </div>
-            <div class="col-md-6" style="background-color: #dedef8;
-               box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-               <p> sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
-               </p >
+<h3><p>LibriSpeech</p ></h3>
+<p id="Libri"></p>
 
-              <audio controls>
-                <source src="LibriTTS/groudtruth/78_368_000018_000001.wav" type="audio/wav">
-                您的浏览器不支持 audio 元素。
-              </audio>
-
-            </div>
-            <div class="clearfix"></div>
-         </div>
-
-         <div class="row">
-            <div class="col-md-3 col-md-offset-1" style="background-color: #dedef8;
-               box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-               <p>quis nostrud exercitation ullamco laboris nisi ut 
-                  aliquip ex ea commodo consequat.
-               </p >
-            </div>   
-            <div class="col-md-6" style="background-color: #dedef8;
-               box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
-                  sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. Ut enim ad minim.</p >
-            </div>
-			 
-         </div> -->
-
+<script type=text/javascript>
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE"]
+  arr2 = ["303_123507_000010_000001","1874_165701_000017_000000",
+"2570_157243_000126_000001","4138_11079_000008_000003"]
+  text = ['after they had retired for the night it was customary for the adults to carry on a desultory conversation for a short time before lapsing into sleep, and now that i could understand their language i was always a keen listener, although i never proffered any remarks myself.',
+  "repulsed at the polls, he turned to the law as another channel, supplementing forensic failings by his artful story telling.",
+  "or at least i thought so then.",
+  '"and they call this travelling for pleasure!" thought poor katy.',
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LibriTTS/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("Libri").innerHTML=str;
+</script>
 
 </div>
 
