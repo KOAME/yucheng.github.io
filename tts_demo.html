@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta charset="utf-8"> 
-   <title>CUC-VAE TTS</title>
+   <title>Audio samples from Cross-utterance Conditioned VAE for Non-autoregressive TTS</title>
    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -10,7 +10,7 @@
 <body>
 <style>
 #test td{
-  padding-left: 10px;
+  padding: 10px;
   background-color: #f0f8ff;
   box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
 }
@@ -18,11 +18,15 @@
 </style>
 <div class="container">
   <div class="page-header">
-    <h1>Demo page of CUC-VAE TTS</h1>
+    <h1>Audio samples from Cross-utterance Conditioned VAE for Non-autoregressive TTS</h1>
     <br>
     <p class="lead">
       This is a demo page of the paper
       <strong>“Cross-utterance Conditioned VAE for Non-autoregressive TTS”</strong>
+    </p>
+    <p class="lead">
+      <strong>Authors</strong>
+      Yang Li, Guangzhi Sun, Hua Jiang, Cheng Yu, Weiqin Zu, Ying Wen, Fanglei Sun, Jun Wang
     </p>
 <!--     <p class="lead">
       Paper available at
@@ -31,7 +35,7 @@
 
   </div>
 
-<h2><p>Result</p ></h2>
+<h2><p>Demos</p ></h2>
 
 <h3><p>Ablation Study</p ></h3>
 <p id="LJSAbla"></p>
@@ -48,7 +52,7 @@
   var str = '';
   for (y in arr2)
   {
-    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
     for (x in arr1)
     {
@@ -64,7 +68,7 @@
   document.getElementById("LJSAbla").innerHTML=str;
 </script>
 
-<h3><p>LJSpeech</p ></h3>
+<h3><p>Synthesized by model trained in LJ-Speech</p ></h3>
 <p id="LJS"></p>
 
 <script>
@@ -79,7 +83,7 @@
   var str = '';
   for (y in arr2)
   {
-    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
     for (x in arr1)
     {
@@ -95,7 +99,7 @@
   document.getElementById("LJS").innerHTML=str;
 </script>
 
-<h3><p>LibriSpeech</p ></h3>
+<h3><p>Synthesized by model trained in LibriTTS</p ></h3>
 <h4><p>Male</p ></h4>
 <p id="LibriMale"></p>
 
@@ -109,7 +113,7 @@
   var str = '';
   for (y in arr2)
   {
-    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
     for (x in arr1)
     {
@@ -138,7 +142,7 @@
   var str = '';
   for (y in arr2)
   {
-    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
     str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
     for (x in arr1)
     {
