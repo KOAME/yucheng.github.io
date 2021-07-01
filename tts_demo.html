@@ -33,14 +33,14 @@
 
 <h2><p>Result</p ></h2>
 
-<h3><p>LJSpeech (Ablation Study)</p ></h3>
+<h3><p>Ablation Study</p ></h3>
 <p id="LJSAbla"></p>
 
 <script>
   arr1 = ["groudtruth","baseline","baseline+Fine_grained_VAE",
   "PriorSpeech-C","PriorSpeech(C1)","PriorSpeech(C3)","PriorSpeech(C5)"]
   model = ["groudtruth","baseline","baseline+Fine-grained VAE",
-  "CUC-VAE(-C)","CUC-VAE(C1)","CUC-VAE(C3)","CUC-VAE(C5)"]
+  "CUC-VAE(-C)","CUC-VAE(L=1)","CUC-VAE(L=3)","CUC-VAE(L=5)"]
   arr2 = ["LJ003-0044","LJ006-0168"]
   text = ['the reforms which were to be attempted in that prison',
   'to taking the descriptions of newly-arrived prisoners.'
@@ -68,10 +68,10 @@
 <p id="LJS"></p>
 
 <script>
-  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech-C-D",
-  ,"PriorSpeech-C","PriorSpeech(C1)","PriorSpeech(C3)","PriorSpeech(C5)"]
-  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE-C-D",
-  ,"CUC-VAE(-C)","CUC-VAE(C1)","CUC-VAE(C3)","CUC-VAE(C5)"]
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE",
+  "PriorSpeech(C1)"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE",
+  "CUC-VAE"]
   arr2 = ["LJ017-0271","LJ049-0225"]
   text = ['lyons asked the time, and was told it was only five.',
   'the commission feels the secret service and the fbi, as well as the state department and the cia when the president travels abroad,'
@@ -85,7 +85,7 @@
     {
       str += '';
       str += '<tr>'
-      str += "<td>" + arr1[x] + "</td>";
+      str += "<td>" + model[x] + "</td>";
       str += '<td><audio controls><source src="LJSpeech/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
       str += '</tr>'
     }
@@ -96,16 +96,43 @@
 </script>
 
 <h3><p>LibriSpeech</p ></h3>
-<p id="Libri"></p>
+<h4><p>Male</p ></h4>
+<p id="LibriMale"></p>
 
 <script type=text/javascript>
   arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
   model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE"]
-  arr2 = ["303_123507_000010_000001","1874_165701_000017_000000",
-"2570_157243_000126_000001","4138_11079_000008_000003"]
+  arr2 = ["303_123507_000010_000001","1874_165701_000017_000000"]
   text = ['after they had retired for the night it was customary for the adults to carry on a desultory conversation for a short time before lapsing into sleep, and now that i could understand their language i was always a keen listener, although i never proffered any remarks myself.',
-  "repulsed at the polls, he turned to the law as another channel, supplementing forensic failings by his artful story telling.",
-  "or at least i thought so then.",
+  "repulsed at the polls, he turned to the law as another channel, supplementing forensic failings by his artful story telling."
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote>' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LibriTTS/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("LibriMale").innerHTML=str;
+</script>
+
+<h4><p>Female</p ></h4>
+<p id="LibriFemale"></p>
+
+<script type=text/javascript>
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE"]
+  arr2 = ["2570_157243_000126_000001","4138_11079_000008_000003"]
+  text = ["or at least i thought so then.",
   '"and they call this travelling for pleasure!" thought poor katy.',
 ]
   var str = '';
@@ -124,9 +151,8 @@
     str += "</tbody> </table>";
     str += '<h1> </h1>';
   }
-  document.getElementById("Libri").innerHTML=str;
+  document.getElementById("LibriFemale").innerHTML=str;
 </script>
-
 </div>
 
 </body>
